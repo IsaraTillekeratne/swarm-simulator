@@ -27,11 +27,11 @@ class ProximitySensorEmulator extends VirtualProximitySensorEmulator {
         // Virtual proximity sensors are located on those directions,
         //    relative to the heading of the robot
         const distHeadings = [
-            normalizeAngle(heading - 150),
-            normalizeAngle(heading - 90),
+            normalizeAngle(heading - 170),
+            normalizeAngle(heading - 30),
             normalizeAngle(heading),
-            normalizeAngle(heading + 90),
-            normalizeAngle(heading + 150)
+            normalizeAngle(heading + 30),
+            normalizeAngle(heading + 170)
         ];
 
         for (var i = 0; i < distHeadings.length; i++) {
@@ -45,7 +45,7 @@ class ProximitySensorEmulator extends VirtualProximitySensorEmulator {
 
             // Minimum Proximity to robots
             robotDist[i] = this._robots.getRobotDistance(distHeadings[i], x, y);
-            dist[i] = Math.ceil(Math.min(obstacleDist[i], robotDist[0])); // return as an int
+            dist[i] = Math.ceil(Math.min(obstacleDist[i], robotDist[i])); // return as an int
 
             // console.log(` ${h} > obst:${obstacleDist[i]} robot:${robotDist[i]}`);
         }
