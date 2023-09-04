@@ -16,6 +16,8 @@ const {
     ProximitySensorEmulator
 } = require('../emulators/sensors');
 
+const { Arena } = require('../emulators/arena/arena');
+
 // Robot communication emulators
 const {
     SimpleCommunicationEmulator,
@@ -85,6 +87,8 @@ class Robots {
 
         // Localization Module
         this.localization = new LocalizationController(this.mqttPublish);
+
+        this.arena = new Arena(this.mqttPublish, this.swarm);
     }
 
     /**
@@ -105,6 +109,8 @@ class Robots {
             // Agent Emulators
             ...this.localization.defaultSubscriptions(),
             ...this.neopixel.defaultSubscriptions(),
+
+            ...this.arena.defaultSubscriptions(),
 
             // Robots specific topics
             {

@@ -6,7 +6,7 @@ class EnvironmentController extends Environment {
             {
                 topic: 'obstacles/?',
                 type: 'String',
-                allowRetained: true,
+                allowRetained: false,
                 subscribe: true,
                 publish: false,
                 handler: (msg, swarm) => {
@@ -19,7 +19,7 @@ class EnvironmentController extends Environment {
                     } else {
                         obstacles = this.getObstaclesList('M');
                     }
-
+                    console.log(obstacles, 'obstacles');
                     swarm.mqttPublish('obstacles', obstacles, {
                         qos: 2,
                         retain: true

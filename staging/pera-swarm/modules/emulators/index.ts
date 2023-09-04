@@ -10,3 +10,4 @@ export abstract class AbstractVirtualEmulator implements VirtualEmulatorInterfac
 
 export * from './agent-emulators/';
 export * from './sensor-emulators/';
+export * from './arena-emulators/';

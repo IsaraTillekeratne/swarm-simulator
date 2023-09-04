@@ -4,7 +4,7 @@
     "description": "A mixed reality-based swarm simulator using node.js, cron, mqtt & pera-swarm",
     "main": "index.js",
     "scripts": {
-        "start": "node app/index.js",
+        "start": "nodemon app/index.js",
         "compile:staging": "tsc",
         "dev:staging": "tsc --watch",
         "dev": "nodemon app/index.js",

@@ -30,9 +30,8 @@ class Swarm {
         // Initiate the MQTT router for communication
         this.mqttRouter = new MQTTRouter(mqtt, wrapper([], this), mqttConfig, setup);
         this.mqttRouter.start();
-
-        const envSetup =
-            process.env.ARENA_CONFIG || './app/config/arena/arena_default.json';
+        console.log('A', global.ARENA_CONFIG);
+        const envSetup = process.env.ARENA_CONFIG;
 
         // Create the environment
         this.environment = new EnvironmentController(obstacleController(), envSetup);
@@ -97,6 +96,36 @@ class Swarm {
         this.mqttRouter.pushToPublishQueue(topic, message.toString(), options);
         // publishToTopic(mqtt, topic, message.toString(), options);
     };
+
+    updateEnvSetup(newEnvSetup) {
+        console.log(newEnvSetup);
+        this.envSetup = newEnvSetup;
+        process.env.ARENA_CONFIG = newEnvSetup;
+        // this.environment.clearEnvironment();
+        const c = this.environment.readConfig(newEnvSetup);
+
+        this.environment._obstacleController._list = [];
+        this.environment._obstacleController._arenaConfig = undefined;
+        this.environment._config.arena = {};
+        console.log(this.environment._config.obstacles);
+        this.mqttPublish('/obstacles', [], {
+            retain: false
+        });
+        // this.environment = null;
+
+        this.environment = new EnvironmentController(
+            new obstacleController(),
+            newEnvSetup
+        );
+        this.environment._config.arena = c.arena;
+
+        this.environment.createObstacles((obstacles) => {
+            // Callback for publishing each obstacle into the environment
+            this.mqttPublish('/obstacles', obstacles, {
+                retain: false
+            });
+        });
+    }
 }
 
 module.exports = { Swarm };
