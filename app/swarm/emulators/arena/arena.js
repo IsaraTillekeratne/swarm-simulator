@@ -2,7 +2,6 @@ const { AbstractArenaEmulator } = require('../../../../dist/pera-swarm');
 const fs = require('fs');
 const path = require('path');
 const Swarm = require('../../swarm');
-const updateConfigFile = require('../../../services/updateConfigeFile');
 
 // Define the relative path to the target folder from the current directory
 const relativeFolderPath = '../../../config/arena';
