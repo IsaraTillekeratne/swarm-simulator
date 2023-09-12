@@ -1,9 +1,9 @@
 {
     "arena": {
-        "xMin": -90,
-        "xMax": 90,
-        "yMin": -90,
-        "yMax": 90,
+        "xMin": -150,
+        "xMax": 150,
+        "yMin": -150,
+        "yMax": 150,
         "units": "virtual"
     },
     "channel": "v1",
@@ -12,10 +12,10 @@
             "type": "wall",
             "name": "North Wall",
             "parameters": {
-                "x": -90,
-                "y": 90,
+                "x": -150,
+                "y": 150,
                 "orientation": 0,
-                "width": 180,
+                "width": 300,
                 "height": 20,
                 "color": "#404040"
             },
@@ -25,10 +25,10 @@
             "type": "wall",
             "name": "West Wall",
             "parameters": {
-                "x": -90,
-                "y": -90,
+                "x": -150,
+                "y": -150,
                 "orientation": 90,
-                "width": 180,
+                "width": 300,
                 "height": 20,
                 "color": "#404040"
             },
@@ -38,10 +38,10 @@
             "type": "wall",
             "name": "East Wall",
             "parameters": {
-                "x": 90,
-                "y": -90,
+                "x": 150,
+                "y": -150,
                 "orientation": 180,
-                "width": 180,
+                "width": 300,
                 "height": 20,
                 "color": "#404040"
             },
@@ -51,10 +51,10 @@
             "type": "wall",
             "name": "South Wall",
             "parameters": {
-                "x": 90,
-                "y": 90,
+                "x": 150,
+                "y": 150,
                 "orientation": -90,
-                "width": 180,
+                "width": 300,
                 "height": 20,
                 "color": "#404040"
             },
@@ -65,7 +65,7 @@
             "description": "task red 1",
             "parameters": {
                 "x": 0,
-                "y": 40,
+                "y": 50,
                 "height": 12,
                 "radius": 5,
                 "color": "#FF0000"
@@ -77,20 +77,42 @@
             "description": "task red 2",
             "parameters": {
                 "x": 0,
-                "y": -40,
+                "y": -50,
                 "height": 12,
                 "radius": 5,
                 "color": "#FF0000"
             },
             "reality": "V"
         },
-        
-        
+        {
+            "type": "cylinder",
+            "description": "task red 3",
+            "parameters": {
+                "x": 0,
+                "y": 100,
+                "height": 12,
+                "radius": 5,
+                "color": "#FF0000"
+            },
+            "reality": "V"
+        },
+        {
+            "type": "cylinder",
+            "description": "task red 4",
+            "parameters": {
+                "x": 0,
+                "y": -100,
+                "height": 12,
+                "radius": 5,
+                "color": "#FF0000"
+            },
+            "reality": "V"
+        },
         {
             "type": "cylinder",
             "description": "task blue 1",
             "parameters": {
-                "x": 60,
+                "x": 50,
                 "y": 0,
                 "height": 12,
                 "radius": 5,
@@ -102,7 +124,7 @@
             "type": "cylinder",
             "description": "task blue 2",
             "parameters": {
-                "x": -60,
+                "x": -50,
                 "y": 0,
                 "height": 12,
                 "radius": 5,
@@ -110,28 +132,72 @@
             },
             "reality": "V"
         },
-        
-        
-        
         {
             "type": "cylinder",
-            "description": "task blue 6",
+            "description": "task blue 3",
             "parameters": {
-                "x": -40,
-                "y": 65,
+                "x": -100,
+                "y": 0,
                 "height": 12,
                 "radius": 5,
                 "color": "#0000FF"
             },
             "reality": "V"
         },
-        
+        {
+            "type": "cylinder",
+            "description": "task blue 4",
+            "parameters": {
+                "x": 100,
+                "y": 0,
+                "height": 12,
+                "radius": 5,
+                "color": "#0000FF"
+            },
+            "reality": "V"
+        },
+        {
+            "type": "cylinder",
+            "description": "task blue 5",
+            "parameters": {
+                "x": 100,
+                "y": 100,
+                "height": 12,
+                "radius": 5,
+                "color": "#0000FF"
+            },
+            "reality": "V"
+        },
+        {
+            "type": "cylinder",
+            "description": "task blue 6",
+            "parameters": {
+                "x": -50,
+                "y": 50,
+                "height": 12,
+                "radius": 5,
+                "color": "#0000FF"
+            },
+            "reality": "V"
+        },
         {
             "type": "cylinder",
             "description": "task blue 7",
             "parameters": {
-                "x": 40,
-                "y": -65,
+                "x": -100,
+                "y": -100,
+                "height": 12,
+                "radius": 5,
+                "color": "#0000FF"
+            },
+            "reality": "V"
+        },
+        {
+            "type": "cylinder",
+            "description": "task blue 7",
+            "parameters": {
+                "x": 50,
+                "y": -50,
                 "height": 12,
                 "radius": 5,
                 "color": "#0000FF"
@@ -142,21 +208,32 @@
             "type": "cylinder",
             "description": "task red 5",
             "parameters": {
-                "x": 40,
-                "y": 40,
+                "x": 50,
+                "y": 50,
                 "height": 12,
                 "radius": 5,
                 "color": "#FF0000"
             },
             "reality": "V"
         },
-        
+        {
+            "type": "cylinder",
+            "description": "task red 6",
+            "parameters": {
+                "x": -100,
+                "y": 100,
+                "height": 12,
+                "radius": 5,
+                "color": "#FF0000"
+            },
+            "reality": "V"
+        },
         {
             "type": "cylinder",
             "description": "task red 7",
             "parameters": {
-                "x": -40,
-                "y": -40,
+                "x": -50,
+                "y": -50,
                 "height": 12,
                 "radius": 5,
                 "color": "#FF0000"
@@ -167,24 +244,11 @@
             "type": "cylinder",
             "description": "task red 8",
             "parameters": {
-                "x": -65,
-                "y": 45,
+                "x": 100,
+                "y": -100,
                 "height": 12,
                 "radius": 5,
                 "color": "#FF0000"
-            },
-            "reality": "V"
-        },
-
-        {
-            "type": "cylinder",
-            "description": "task red 9",
-            "parameters": {
-                "x": 65,
-                "y": -45,
-                "height": 12,
-                "radius": 5,
-                "color": "#0000FF"
             },
             "reality": "V"
         }
