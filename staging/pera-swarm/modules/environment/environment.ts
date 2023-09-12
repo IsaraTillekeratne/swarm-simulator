@@ -47,7 +47,7 @@ export abstract class AbstractEnvironment {
         this._obstacleController = obstacleController;
         this._config = config;
         this._updated = Date.now();
-        this._config.arena = config.arena;
+        // this._config.arena = config.arena;
     }
 
     /**
