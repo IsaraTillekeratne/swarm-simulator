@@ -21,11 +21,7 @@ class Arena extends AbstractArenaEmulator {
         this.swarm = swarmInstance;
     }
 
-    // setData = (robot, value) => {
-    //     return robot.setData('distance', 400);
-    // };
-
-    get = () => {
+    getArenaDetails = () => {
         results = [];
         fs.readdir(folderPath, (err, files) => {
             if (err) {
@@ -51,9 +47,6 @@ class Arena extends AbstractArenaEmulator {
                             if (readErr) {
                                 console.error(`Error reading file "${file}":`, readErr);
                             } else {
-                                // Print the file name and content
-                                // console.log(`File Name: ${file}`);
-                                // console.log(`File Content:\n${data}`);
                                 try {
                                     const jsonData = JSON.parse(data);
 
@@ -75,7 +68,7 @@ class Arena extends AbstractArenaEmulator {
                                     };
 
                                     results.push(result);
-                                    // console.log('Pushed Result:', 'result');
+
                                     // Check if all files have been processed
                                     if (results.length === files.length) {
                                         this.publish('arena/details', results);
@@ -93,19 +86,12 @@ class Arena extends AbstractArenaEmulator {
                 });
             });
         });
-        // console.log(`results:${results.length}`);
     };
 
     
     setArena = (fileName) => {
         const ARENA_CONFIG = `./app/config/arena/${fileName}`;
-        // this.publish('v1/obstacles/delete/all', '');
-        // console.log(this.swarm.environment.obstacleController.visualizeObstacles());
         this.swarm.updateEnvSetup(ARENA_CONFIG);
-        // updateConfigFile(
-        //     `${__dirname}/../../../config/arena.config.js`,
-        //     `./app/config/arena/${fileName}`
-        // );
     };
 
     getArenaJson = (fileName) => {
@@ -168,7 +154,7 @@ class Arena extends AbstractArenaEmulator {
                 publish: true,
                 handler: (msg) => {
                     console.log(msg);
-                    this.get();
+                    this.getArenaDetails();
                 }
             },
             {

@@ -105,24 +105,31 @@ class Swarm {
         const c = this.environment.readConfig(newEnvSetup);
 
         this.environment._obstacleController._list = [];
-        this.environment._obstacleController._arenaConfig = undefined;
-        this.environment._config.arena = {};
+        // this.environment._obstacleController._arenaConfig = undefined;
+        // this.environment._config.arena = {};
         console.log(this.environment._config.obstacles);
-        this.mqttPublish('/obstacles', [], {
-            retain: false
-        });
+        // this.mqttPublish('/obstacles', [], {
+        //     retain: false
+        // });
         // this.environment = null;
 
         this.environment = new EnvironmentController(
             new obstacleController(),
             newEnvSetup
         );
-        this.environment._config.arena = c.arena;
+        // this.environment._config.arena = c.arena;
 
         this.environment.createObstacles((obstacles) => {
+            this.mqttPublish('/obstacles/delete/all', '?', {
+                retain: false
+            });
+
             // Callback for publishing each obstacle into the environment
             this.mqttPublish('/obstacles', obstacles, {
-                retain: false
+                retain: true
+            });
+            this.mqttPublish('/config/arena/', this.environment._config.arena, {
+                retain: true
             });
         });
     }
