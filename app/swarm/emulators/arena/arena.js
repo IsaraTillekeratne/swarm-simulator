@@ -96,6 +96,7 @@ class Arena extends AbstractArenaEmulator {
         // console.log(`results:${results.length}`);
     };
 
+    
     setArena = (fileName) => {
         const ARENA_CONFIG = `./app/config/arena/${fileName}`;
         // this.publish('v1/obstacles/delete/all', '');
@@ -105,6 +106,56 @@ class Arena extends AbstractArenaEmulator {
         //     `${__dirname}/../../../config/arena.config.js`,
         //     `./app/config/arena/${fileName}`
         // );
+    };
+
+    getArenaJson = (fileName) => {
+        results = []
+        fs.readdir(folderPath, (err, files) => {
+            if (err) {
+                console.error('Error reading folder:', err);
+                return;
+            }
+
+            // Loop through each file in the folder
+            files.forEach((file) => {
+                // Get the full file path
+                const filePath = path.join(folderPath, file);
+
+                // Check if the item is a file (not a directory)
+                fs.stat(filePath, (statErr, stats) => {
+                    if (statErr) {
+                        console.error('Error getting file stats:', statErr);
+                        return;
+                    }
+
+                    if (stats.isFile()) {
+                        // Read the file content
+                        if(file===fileName){
+                            fs.readFile(filePath, 'utf-8', (readErr, data) => {
+                                if (readErr) {
+                                    console.error(`Error reading file "${file}":`, readErr);
+                                } else {
+                                    
+                                    try {
+                                        const jsonData = JSON.parse(data);
+                                        results.push(jsonData)
+                                        this.publish('arena/arenaJson', results);
+                                        
+                                    } catch (parseErr) {
+                                        console.error(
+                                            `Error parsing JSON in file "${file}":`,
+                                            parseErr
+                                        );
+                                    }
+                                }
+                            });
+                        }
+                        
+                    }
+                });
+            });
+        });
+        
     };
 
     defaultSubscriptions = () => {
@@ -129,6 +180,17 @@ class Arena extends AbstractArenaEmulator {
                 handler: (msg) => {
                     console.log(msg);
                     this.setArena(msg);
+                }
+            },
+            {
+                topic: 'arena/getArenaJson',
+                type: 'JSON',
+                allowRetained: false,
+                subscribe: true,
+                publish: true,
+                handler: (msg) => {
+                    console.log(msg);
+                    this.getArenaJson(msg);
                 }
             }
         ];
